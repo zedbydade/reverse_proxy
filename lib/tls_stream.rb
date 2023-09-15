@@ -9,5 +9,8 @@ class TlsStream
   end
 
   def call 
+    remote_addr = stream.remote_host 
+    accept = OpenSSL::SSL::SSLSocket.new(stream, config)
+    { remote_addr:, accept: }
   end 
 end
