@@ -12,9 +12,9 @@ class TlsStream
 
   def call
     remote_addr = stream.remote_host
-    # WARNING
     # SSL_CONTEXT WILL BE FRONZEN HERE
-    accept = OpenSSL::SSL::SSLSocket.new(stream, config).connect
+    p remote_addr
+    accept = OpenSSL::SSL::SSLSocket.new(stream, config).accept
     { remote_addr:, accept: }
   end
 end
