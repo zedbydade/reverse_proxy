@@ -25,6 +25,7 @@ loop do
   p "Starting server: #{ssl_server.inspect}"
   client = ssl_server.accept # Wait for a client to connect
   p "With client: #{client.inspect}"
+  p client.gets
   client.write 'TU-TU-RU with TLS'
   client.close
 end
