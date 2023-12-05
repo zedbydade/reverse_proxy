@@ -25,7 +25,6 @@ class TlsStream
   end
 
   def self.write(ssl_socket)
-    # I need to find the difference between write and puts
-    ssl_socket.write("Write with TLS")
+    ssl_socket.write('Write with TLS')
   end
 end
