@@ -8,7 +8,16 @@ class Svc
     @client = client
   end
 
-  def self.log_request(req)
+  def service(req)
+    log_request(req)
+
+    url = 'http://localhost:1111' + req.path_and_query
+    client.request(url)
+  end
+
+  private
+
+  def log_request(req)
     referrer = req.headers['referrer']
     user_agent = req.headers['user-agent']
 
@@ -16,8 +25,7 @@ class Svc
     IP: #{remote_addr.ip}
     TIME: #{Time.now.strftime('%H:%M:%S:%Y')}
     METHOD: #{req.method}
-    PATH: #{req.path}
-    QUERY: #{req.path}
+    PATH/Query: #{req.path_and_query}
     VERSION: #{req.version}
     REFERRER: #{referrer}
     USER_AGENT: #{user_agent}
