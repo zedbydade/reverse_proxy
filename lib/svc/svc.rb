@@ -25,7 +25,7 @@ class Svc
     IP: #{remote_addr.ip}
     TIME: #{Time.now.strftime('%H:%M:%S:%Y')}
     METHOD: #{req.method}
-    PATH/Query: #{req.path_and_query}
+    PATH/QUERY: #{req.path_and_query}
     VERSION: #{req.version}
     REFERRER: #{referrer}
     USER_AGENT: #{user_agent}
