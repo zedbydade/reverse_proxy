@@ -11,7 +11,7 @@ private_key_raw = read_certificates('./utils/private.pem')
 certificate = OpenSSL::X509::Certificate.new(public_key_raw)
 rsa_key = OpenSSL::PKey::RSA.new(private_key_raw)
 
-server = TCPServer.new('localhost', 2000) # Server bind to port 2000
+server = TCPServer.new('localhost', 1111) # Server bind to port 1111
 context = OpenSSL::SSL::SSLContext.new
 context.add_certificate(certificate, rsa_key)
 context.min_version = OpenSSL::SSL::TLS1_1_VERSION
