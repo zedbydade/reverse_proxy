@@ -9,17 +9,18 @@ class Svc
   end
 
   def service(req)
-    log_request(req)
+    path_and_query = req.uri.path + '?' + req.uri.query
+    log_request(req, path_and_query)
 
-    url = 'http://localhost:1111' + req.uri.path + req.uri.query
-    client.request(url)
+    url = 'http://localhost:1111' + path_and_query
+    client.request(req.verb, url)
   end
+
   private
 
-  def log_request(req)
+  def log_request(req, path_and_query)
     referrer = req.headers['referrer']
     user_agent = req.headers['user-agent']
-    path_and_query = req.uri.path + req.uri.query
     puts "
     IP: #{remote_addr.inspect_sockaddr}
     TIME: #{Time.now.strftime('%H:%M:%S:%Y')}
