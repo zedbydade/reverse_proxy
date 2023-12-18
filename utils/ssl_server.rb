@@ -6,8 +6,8 @@ def read_certificates(name)
   File.binread name
 end
 
-public_key_raw = read_certificates('./utils/public.pem')
-private_key_raw = read_certificates('./utils/private.pem')
+public_key_raw = read_certificates('./utils/localhost.crt')
+private_key_raw = read_certificates('./utils/localhost.key')
 certificate = OpenSSL::X509::Certificate.new(public_key_raw)
 rsa_key = OpenSSL::PKey::RSA.new(private_key_raw)
 
