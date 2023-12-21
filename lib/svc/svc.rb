@@ -1,10 +1,10 @@
 # Main service for proxying logic.
 
 class Svc
-  attr_accessor :remote_addr, :client
+  attr_accessor :socket, :client
 
-  def initialize(remote_addr:, client:)
-    @remote_addr = remote_addr
+  def initialize(socket:, client:)
+    @socket = socket
     @client = client
   end
 
@@ -22,7 +22,7 @@ class Svc
     referrer = req.headers['referrer']
     user_agent = req.headers['user-agent']
     puts "
-    IP: #{remote_addr.inspect_sockaddr}
+    IP: #{client.peeraddr[3]}
     TIME: #{Time.now.strftime('%H:%M:%S:%Y')}
     METHOD: #{req.verb}
     PATH/QUERY: #{path_and_query}
